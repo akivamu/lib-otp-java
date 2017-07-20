@@ -83,7 +83,7 @@ public class TOTP {
         int offset = hash[hash.length - 1] & 0xf;
         int binary = ((hash[offset] & 0x7f) << 24) | ((hash[offset + 1] & 0xff) << 16) | ((hash[offset + 2] & 0xff) << 8) | (hash[offset + 3] & 0xff);
 
-        return String.valueOf(binary % getDigitPower(digits));
+        return String.format("%0" + digits + "d", binary % getDigitPower(digits));
     }
 
     private static byte[] getMacHash(byte[] secret, long interval, Crypto crypto) {
